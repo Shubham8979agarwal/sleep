@@ -45,7 +45,6 @@ h6,
     font-weight: 500 !important;
 }
 
-
 /*** Button ***/
 .btn {
     font-weight: 500;
@@ -82,7 +81,7 @@ h6,
 /*** Navbar ***/
 .navbar-light .navbar-nav .nav-link {
     position: relative;
-    margin-left: 25px;
+    margin-left: 50px;
     padding: 35px 0;
     color: var(--light) !important;
     outline: none;
@@ -250,7 +249,7 @@ h6,
 /*** Service ***/
 .service-item {
     position: relative;
-    height: 350px;
+    /*height: 350px;*/
     padding: 30px 25px;
     background: #FFFFFF;
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
@@ -278,12 +277,12 @@ h6,
     background: url(../img/icon-shape-white.png);
 }
 
-.service-item h5,
+.service-item h6,
 .service-item p {
     transition: .5s;
 }
 
-.service-item:hover h5,
+.service-item:hover h6,
 .service-item:hover p {
     color: var(--light);
 }
