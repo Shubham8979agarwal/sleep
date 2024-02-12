@@ -6,16 +6,6 @@
     --dark: #1D1D27;
 }
 
-*{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -msbox-sizing: border-box;
-}
-
-body{
-   overflow-x: hidden;
-}
-
 /*** Spinner ***/
 #spinner {
     opacity: 0;
