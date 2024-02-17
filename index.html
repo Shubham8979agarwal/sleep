@@ -114,6 +114,64 @@
          }
       </style>
       <link href="css/color-scheme.css" rel="stylesheet">
+      <script type="text/javascript">
+              var TxtType = function(el, toRotate, period) {
+              this.toRotate = toRotate;
+              this.el = el;
+              this.loopNum = 0;
+              this.period = parseInt(period, 10) || 2000;
+              this.txt = '';
+              this.tick();
+              this.isDeleting = false;
+          };
+
+          TxtType.prototype.tick = function() {
+              var i = this.loopNum % this.toRotate.length;
+              var fullTxt = this.toRotate[i];
+
+              if (this.isDeleting) {
+              this.txt = fullTxt.substring(0, this.txt.length - 1);
+              } else {
+              this.txt = fullTxt.substring(0, this.txt.length + 1);
+              }
+
+              this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+              var that = this;
+              var delta = 200 - Math.random() * 100;
+
+              if (this.isDeleting) { delta /= 2; }
+
+              if (!this.isDeleting && this.txt === fullTxt) {
+              delta = this.period;
+              this.isDeleting = true;
+              } else if (this.isDeleting && this.txt === '') {
+              this.isDeleting = false;
+              this.loopNum++;
+              delta = 500;
+              }
+
+              setTimeout(function() {
+              that.tick();
+              }, delta);
+          };
+
+          window.onload = function() {
+              var elements = document.getElementsByClassName('typewrite');
+              for (var i=0; i<elements.length; i++) {
+                  var toRotate = elements[i].getAttribute('data-type');
+                  var period = elements[i].getAttribute('data-period');
+                  if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                  }
+              }
+              // INJECT CSS
+              var css = document.createElement("style");
+              css.type = "text/css";
+              css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+              document.body.appendChild(css);
+          };
+   </script>
    </head>
    <body>
       <div class="bg-white p-0">
@@ -145,7 +203,7 @@
                      <a href="#plans" class="nav-item nav-link">Plans</a>
                      <a href="#faqs" class="nav-item nav-link">FAQs</a>
                   </div>
-                  <a href="https://calendly.com/GoodnightInsomnia" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-4">Make An Appointment</a>
+                  <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-4">Make An Appointment</a>
                </div>
             </nav>
             <div class="py-5 bg-primary hero-header mb-5">
@@ -153,14 +211,19 @@
                   <div class="row py-5">
                      <div class="col-lg-6 text-center text-lg-start order-sm-first order-last">
                         <h1 class="text-white mb-4">Welcome to Goodnight Insomnia</h1>
-                        <p class="text-white pb-3 animated zoomIn"><span class="fw-bold animated zoomIn">
+                        <p class="text-white">
+                          <a href="#" class="text-white typewrite" data-period="1000" data-type='[ "Are sleepless nights becoming a regular part of your life? You are not alone, and with Goodnight Insomnia, relief is within reach.", "Struggling to sleep? Goodnight Insomnia has the solution.", "Insomnia, meet your match." ]'>
+                            <span class="wrap"></span>
+                          </a>
+                        <p>
+                        <!-- <p class="text-white pb-3 animated zoomIn"><span class="fw-bold animated zoomIn">
                            <strong>
                               Are sleepless nights becoming a regular part of your life?
                            </strong>
                         </span>
                         <br/>
-                        You're not alone, and relief is within reach. I'm Michael Stein, a Behavioral Sleep Specialist and the founder of GoodnightInsomnia. I understand the impact that insomnia can have on your well-being. I provide one-on-one coaching, offering personalized guidance and holistic support to help individuals overcome sleep challenges. Say goodbye to insomnia and embrace the promise of restful nights. My tailored approach addresses your unique needs, guiding you on a holistic journey towards a good night's sleep and a refreshed tomorrow.</p>
-                        <a href="https://calendly.com/GoodnightInsomnia" class="btn btn-light py-sm-3 mb-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Connect With Me</a>
+                        You're not alone, and relief is within reach. I'm Michael Stein, a Behavioral Sleep Specialist and the founder of GoodnightInsomnia. I understand the impact that insomnia can have on your well-being. I provide one-on-one coaching, offering personalized guidance and holistic support to help individuals overcome sleep challenges. Say goodbye to insomnia and embrace the promise of restful nights. My tailored approach addresses your unique needs, guiding you on a holistic journey towards a good night's sleep and a refreshed tomorrow.</p> -->
+                        <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min" class="btn btn-light py-sm-3 mb-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Connect With Me</a>
                      </div>
                      <div class="col-lg-6 text-center text-lg-start">
                         <img class="img-fluid" src="img/9926505_4321503.png" alt="" style="margin-top: -50px;">
@@ -204,7 +267,7 @@
                <div class="row align-items-center" style="height: 250px;">
                   <div class="col-12 col-md-6">
                      <h3 class="text-white mb-4">Ready to get started?</h3>
-                     <a href="https://calendly.com/GoodnightInsomnia" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Connect With Me</a>
+                     <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Connect With Me</a>
                   </div>
                   <div class="col-md-6 text-center mb-n5 d-none d-md-block">
                      <img class="img-fluid" style="height: 250px;" src="img/21118463.png">
@@ -227,7 +290,7 @@
                            <i class="fa fa-calendar fa-2x"></i>
                         </div>
                         <h6 class="mb-3">Schedule a Free Consultation</h6>
-                        <p>Are you unsure where to start or have questions about how sleep coaching can benefit you? Take advantage of a complimentary consultation to discuss your sleep goals and explore how I can support you on your journey to better sleep. To schedule your free consultation, <a href="https://calendly.com/GoodnightInsomnia"><u>Schedule</u></a> or contact me directly at michael@goodnightinsomnia.ca</p><br><br>
+                        <p>Are you unsure where to start or have questions about how sleep coaching can benefit you? Take advantage of a complimentary consultation to discuss your sleep goals and explore how I can support you on your journey to better sleep. To schedule your free consultation, <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min"><u>Schedule</u></a> or contact me directly at michael@goodnightinsomnia.ca</p><br><br>
                      </div>
                   </div>
                   <div class="col-lg-6 col-md-6 wow zoomIn" data-wow-delay="0.3s">
@@ -236,7 +299,7 @@
                            <i class="fa fa-bed fa-2x"></i>
                         </div>
                         <h6 class="mb-3">Book the Six-Week Package</h6>
-                        <p>Ready to dive into a structured program designed to transform your sleep quality over the next six weeks? The six-week sleep coaching package offers comprehensive support, including an initial assessment, personalized sleep plan, bi-weekly sessions, progress tracking, and between-session support. Start your journey to better sleep today and experience the benefits of a restful night's sleep. To book the six-week package, <a href="https://calendly.com/GoodnightInsomnia"><u>Schedule</u></a> or contact me directly at michael@goodnightinsomnia.ca</p>
+                        <p>Ready to dive into a structured program designed to transform your sleep quality over the next six weeks? The six-week sleep coaching package offers comprehensive support, including an initial assessment, personalized sleep plan, bi-weekly sessions, progress tracking, and between-session support. Start your journey to better sleep today and experience the benefits of a restful night's sleep. To book the six-week package, <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min"><u>Schedule</u></a> or contact me directly at michael@goodnightinsomnia.ca</p>
                      </div>
                   </div>
                </div>
@@ -343,7 +406,7 @@
                <div class="row align-items-center" style="height: 250px;">
                   <div class="col-12 col-md-6">
                      <h3 class="text-white mb-4">Ready to get started?</h3>
-                     <a href="https://calendly.com/GoodnightInsomnia" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Connect With Me</a>
+                     <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Connect With Me</a>
                   </div>
                   <div class="col-md-6 text-center mb-n5 d-none d-md-block">
                      <img class="img-fluid" style="height: 250px;" src="img/21118463.png">
@@ -380,7 +443,7 @@
                   <div class="accordion-item">
                      <input type="checkbox" id="accordion5">
                      <label for="accordion5" class="accordion-item-title"><span class="icon"></span>What is the 6-week sleep package, and what does it include?</label>
-                     <div class="accordion-item-desc">My 6-week sleep coaching package is a comprehensive program designed to address your specific sleep challenges and goals. Priced at $350, this package includes:<br><br>
+                     <div class="accordion-item-desc">My 6-week sleep coaching package is a comprehensive program designed to address your specific sleep challenges and goals. This package includes:<br><br>
                      <ul>   
                      <li><b>Initial Assessment:</b>A thorough analysis of your current sleep patterns, challenges, and goals, including a review of your medical history to ensure a holistic understanding of your unique situation.</li><br>
                      <li>Personalized Sleep Plan: A tailored plan to address your unique needs, incorporating evidence-based techniques.</li><br>
@@ -446,20 +509,20 @@
          <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container-xxl py-5 px-lg-5">
                <div class="row g-5">
-                  <div class="col-md-6 col-lg-3">
+                  <div class="col-md-6 col-lg-6">
                      <h5 class="text-white mb-4"><img src="img/logo.png" style="filter: invert(1);max-height: 60px;" alt="Logo">Goodnight Insomnia</h5>
-                     <p>One-on-one sleep coaching by an experienced Behavioral Sleep Specialist</p>
+                     <p>One-on-one sleep coaching by an experienced Behavioral Sleep <br>Specialist</p>
                   </div>
                   <div class="col-md-6 col-lg-3">
                      <h5 class="text-white mb-4">Popular Link</h5>
-                     <a class="btn btn-link" href="">About Us</a>
                      <a class="btn btn-link" href="">Plans</a>
-                  </div>
-                  <div class="col-md-6 col-lg-3">
-                     <h5 class="text-white mb-4">Important Links</h5>
+                     <a class="btn btn-link" href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min">Make An Appointment</a>
+                     <a class="btn btn-link" href="">About Us</a>
                      <a class="btn btn-link" href="">Testimonials</a>
-                     <a class="btn btn-link" href="https://calendly.com/GoodnightInsomnia">Make An Appointment</a>
                   </div>
+                  <!-- <div class="col-md-6 col-lg-3">
+                     <h5 class="text-white mb-4">Important Links</h5> 
+                  </div> -->
                   <div class="col-md-6 col-lg-3">
                      <h5 class="text-white mb-4">Follow Me</h5>
                      <div class="d-flex pt-2">
