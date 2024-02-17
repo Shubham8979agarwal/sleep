@@ -32,16 +32,6 @@
                margin-top:0px!important;
             }
          }
-         .typewriter {
-              /*border-right: .05em solid;*/
-              animation: caret 0.2s steps(1) infinite;
-            }
-
-            @keyframes caret {
-              50% {
-                border-color: transparent;
-              }
-            }
          .navbar-toggler{
             border-radius: 0px!important;
          }
@@ -119,50 +109,26 @@
          }
       </style>
       <link href="css/color-scheme.css" rel="stylesheet">
-      <script type="text/javascript">
-         document.addEventListener('DOMContentLoaded',function(event){
-              // array with texts to type in typewriter
-              var dataText = [ "Are sleepless nights becoming a regular part of your life? You are not alone, and with Goodnight Insomnia, relief is within reach.", "Struggling to sleep? Goodnight Insomnia has the solution.", "Insomnia, meet your match."];
-              
-              // type one text in the typwriter
-              // keeps calling itself until the text is finished
-              function typeWriter(text, i, fnCallback) {
-                // chekc if text isn't finished yet
-                if (i < (text.length)) {
-                  // add next character to h1
-                 document.querySelector(".typewriter").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+      <style type="text/css">
+         /* (A) FORCE ALL SLIDES INTO SINGLE ROW */
+         .hmove { display: flex; }
+         .hslide { width: 100%; flex-shrink: 0; font-size: 18px!important;}
+         .hwrap { overflow: hidden; }
 
-                  // wait for a while and call this function again for next character
-                  setTimeout(function() {
-                    typeWriter(text, i + 1, fnCallback)
-                  }, 100);
-                }
-                // text finished, call callback if there is a callback function
-                else if (typeof fnCallback == 'function') {
-                  // call callback after timeout
-                  setTimeout(fnCallback, 700);
-                }
-              }
-              // start a typewriter animation for a text in the dataText array
-               function StartTextAnimation(i) {
-                 if (typeof dataText[i] == 'undefined'){
-                    setTimeout(function() {
-                      StartTextAnimation(0);
-                    }, 20000);
-                 }
-                 // check if dataText[i] exists
-                if (i < dataText[i].length) {
-                  // text exists! start typewriter animation
-                 typeWriter(dataText[i], 0, function(){
-                   // after callback (and whole text has been animated), start next text
-                   StartTextAnimation(i + 1);
-                 });
-                }
-              }
-              // start the text animation
-              StartTextAnimation(0);
-            });
-   </script>
+         /* (B) SHIFT SLIDES WITH CSS ANIMATION */
+         /* (B1) SLIDES POSITION */
+         .hmove { position: relative; top: 0; right: 0; }
+         @keyframes slideh {
+           0% { right: 0; } 32% { right: 0; }
+           33% { right: 100%; } 65% { right: 100%; }
+           66% { right: 200%; } 99% { right: 200%; }
+           100% { right: 0; }
+         }
+
+         /* (B2) MOVE SLIDES */
+         .hmove { animation: slideh 12s infinite; }
+         .hmove:hover { animation-play-state: paused; }
+   </style>
    </head>
    <body>
       <div class="bg-white p-0">
@@ -194,7 +160,7 @@
                      <a href="#plans" class="nav-item nav-link">Plans</a>
                      <a href="#faqs" class="nav-item nav-link">FAQs</a>
                   </div>
-                  <a href="#" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-4">Work With Me</a>
+                  <a href="https://buy.stripe.com/28o02U6KF78Z0sU144" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-4">Work With Me</a>
                </div>
             </nav>
             <div class="py-5 bg-primary hero-header mb-5">
@@ -202,7 +168,14 @@
                   <div class="row py-5">
                      <div class="col-lg-6 text-center text-lg-start order-sm-first order-last">
                         <h1 class="text-white mb-4">Welcome to Goodnight Insomnia</h1>
-                        <p class="typewriter text-white"></p>
+                        <!-- <p class="typewriter text-white"></p> -->
+                        <div class="hwrap">
+                           <div class="hmove">
+                             <div class="hslide text-white">Are sleepless nights becoming a regular part of your life? You are not alone, and with Goodnight Insomnia, relief is within reach.<br><br></div>
+                             <div class="hslide text-white">Struggling to sleep? Goodnight Insomnia has the solution.</div>
+                             <div class="hslide text-white">Insomnia, meet your match.</div>
+                           </div>
+                        </div>
                         <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min" class="btn btn-light py-sm-3 mb-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Connect With Me</a>
                      </div>
                      <div class="col-lg-6 text-center text-lg-start">
@@ -279,7 +252,7 @@
                            <i class="fa fa-bed fa-2x"></i>
                         </div>
                         <h6 class="mb-3">Book the Six-Week Package</h6>
-                        <p>Ready to dive into a structured program designed to transform your sleep quality over the next six weeks? The six-week sleep coaching package offers comprehensive support, including an initial assessment, personalized sleep plan, bi-weekly sessions, progress tracking, and between-session support. Start your journey to better sleep today and experience the benefits of a restful night's sleep. To book the six-week package, <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min"><u>Schedule</u></a> or contact me directly at michael@goodnightinsomnia.ca</p>
+                        <p>Ready to dive into a structured program designed to transform your sleep quality over the next six weeks? The six-week sleep coaching package offers comprehensive support, including an initial assessment, personalized sleep plan, bi-weekly sessions, progress tracking, and between-session support. Start your journey to better sleep today and experience the benefits of a restful night's sleep. To book the six-week package, <a href="https://buy.stripe.com/28o02U6KF78Z0sU144"><u>Book</u></a> or contact me directly at michael@goodnightinsomnia.ca</p>
                      </div>
                   </div>
                </div>
@@ -345,7 +318,7 @@
                         <h6>$125 CAD</h6><br>
                         <p>One-on-one private coaching session, via Zoom</p>
                         <p>50 minutes session</p>
-                        <a class="btn px-3 mt-auto mx-auto pb-4" href="">Get Started</a>
+                        <a class="btn px-3 mt-auto mx-auto pb-4" href="https://buy.stripe.com/00g9DufhbgJz7Vm4gh">Get Started</a>
                         <br><br><br><br>
                      </div>
                   </div>
@@ -360,7 +333,7 @@
                         <p>Up to 3 additional follow up sessions (50 minutes)</p>
                         <p>Email support throughout program</p>
                         <p>Can cancel anytime within first 7 days</p>
-                        <a class="btn px-3 mt-auto mx-auto" href="">Get Started</a>
+                        <a class="btn px-3 mt-auto mx-auto" href="https://buy.stripe.com/28o02U6KF78Z0sU144">Get Started</a>
                      </div>
                   </div>
                   <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
@@ -372,7 +345,7 @@
                         <h6>$95 CAD</h6><br>
                         <p>For those who have completed the 6 week program in the past.</p>
                         <p>50 minutes session</p>
-                        <a class="btn px-3 mt-auto mx-auto pb-4" href="">Get Started</a>
+                        <a class="btn px-3 mt-auto mx-auto pb-4" href="https://buy.stripe.com/aEU8zq7OJeBrcbC9AC">Get Started</a>
                         <br><br><br><br>
                      </div>
                   </div>
@@ -496,7 +469,7 @@
                   <div class="col-md-6 col-lg-3">
                      <h5 class="text-white mb-4">Popular Link</h5>
                      <a class="btn btn-link" href="">Plans</a>
-                     <a class="btn btn-link" href="#">Work With Me</a>
+                     <a class="btn btn-link" href="https://buy.stripe.com/28o02U6KF78Z0sU144">Work With Me</a>
                      <a class="btn btn-link" href="">About Us</a>
                      <a class="btn btn-link" href="">Testimonials</a>
                   </div>
