@@ -33,8 +33,8 @@
             }
          }
          .typewriter {
-              /*border-right: .05em solid;*/
-              animation: caret 0.2s steps(1) infinite;
+              border-right: .05em solid;
+              animation: caret 1s steps(1) infinite;
             }
 
             @keyframes caret {
@@ -48,6 +48,11 @@
          .accordion {
          display: flex;
          flex-direction: column;
+         /*font-family: "Sora", sans-serif;
+         max-width: 991px;
+         min-width: 320px;
+         margin: 50px auto;
+         padding: 0 50px;*/
          }
          .accordion h1 {
          font-size: 32px;
@@ -120,48 +125,48 @@
       </style>
       <link href="css/color-scheme.css" rel="stylesheet">
       <script type="text/javascript">
-         document.addEventListener('DOMContentLoaded',function(event){
-              // array with texts to type in typewriter
-              var dataText = [ "Are sleepless nights becoming a regular part of your life? You are not alone, and with Goodnight Insomnia, relief is within reach.", "Struggling to sleep? Goodnight Insomnia has the solution.", "Insomnia, meet your match."];
-              
-              // type one text in the typwriter
-              // keeps calling itself until the text is finished
-              function typeWriter(text, i, fnCallback) {
-                // chekc if text isn't finished yet
-                if (i < (text.length)) {
-                  // add next character to h1
-                 document.querySelector(".typewriter").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+      document.addEventListener('DOMContentLoaded',function(event){
+           // array with texts to type in typewriter
+           var dataText = [ "Are sleepless nights becoming a regular part of your life? You are not alone, and with Goodnight Insomnia, relief is within reach.", "Struggling to sleep? Goodnight Insomnia has the solution.", "Insomnia, meet your match."];
+           
+           // type one text in the typwriter
+           // keeps calling itself until the text is finished
+           function typeWriter(text, i, fnCallback) {
+             // chekc if text isn't finished yet
+             if (i < (text.length)) {
+               // add next character to h1
+              document.querySelector(".typewriter").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
 
-                  // wait for a while and call this function again for next character
-                  setTimeout(function() {
-                    typeWriter(text, i + 1, fnCallback)
-                  }, 100);
-                }
-                // text finished, call callback if there is a callback function
-                else if (typeof fnCallback == 'function') {
-                  // call callback after timeout
-                  setTimeout(fnCallback, 700);
-                }
+               // wait for a while and call this function again for next character
+               setTimeout(function() {
+                 typeWriter(text, i + 1, fnCallback)
+               }, 100);
+             }
+             // text finished, call callback if there is a callback function
+             else if (typeof fnCallback == 'function') {
+               // call callback after timeout
+               setTimeout(fnCallback, 700);
+             }
+           }
+           // start a typewriter animation for a text in the dataText array
+            function StartTextAnimation(i) {
+              if (typeof dataText[i] == 'undefined'){
+                 setTimeout(function() {
+                   StartTextAnimation(0);
+                 }, 20000);
               }
-              // start a typewriter animation for a text in the dataText array
-               function StartTextAnimation(i) {
-                 if (typeof dataText[i] == 'undefined'){
-                    setTimeout(function() {
-                      StartTextAnimation(0);
-                    }, 20000);
-                 }
-                 // check if dataText[i] exists
-                if (i < dataText[i].length) {
-                  // text exists! start typewriter animation
-                 typeWriter(dataText[i], 0, function(){
-                   // after callback (and whole text has been animated), start next text
-                   StartTextAnimation(i + 1);
-                 });
-                }
-              }
-              // start the text animation
-              StartTextAnimation(0);
-            });
+              // check if dataText[i] exists
+             if (i < dataText[i].length) {
+               // text exists! start typewriter animation
+              typeWriter(dataText[i], 0, function(){
+                // after callback (and whole text has been animated), start next text
+                StartTextAnimation(i + 1);
+              });
+             }
+           }
+           // start the text animation
+           StartTextAnimation(0);
+         });
    </script>
    </head>
    <body>
@@ -194,7 +199,7 @@
                      <a href="#plans" class="nav-item nav-link">Plans</a>
                      <a href="#faqs" class="nav-item nav-link">FAQs</a>
                   </div>
-                  <a href="#" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-4">Work With Me</a>
+                  <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min" class="btn btn-secondary text-light rounded-pill py-2 px-4 ms-4">Make An Appointment</a>
                </div>
             </nav>
             <div class="py-5 bg-primary hero-header mb-5">
@@ -496,10 +501,13 @@
                   <div class="col-md-6 col-lg-3">
                      <h5 class="text-white mb-4">Popular Link</h5>
                      <a class="btn btn-link" href="">Plans</a>
-                     <a class="btn btn-link" href="#">Work With Me</a>
+                     <a class="btn btn-link" href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min">Make An Appointment</a>
                      <a class="btn btn-link" href="">About Us</a>
                      <a class="btn btn-link" href="">Testimonials</a>
                   </div>
+                  <!-- <div class="col-md-6 col-lg-3">
+                     <h5 class="text-white mb-4">Important Links</h5> 
+                  </div> -->
                   <div class="col-md-6 col-lg-3">
                      <h5 class="text-white mb-4">Follow Me</h5>
                      <div class="d-flex pt-2">
