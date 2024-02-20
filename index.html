@@ -24,6 +24,13 @@
       <!-- Template Stylesheet -->
       <link href="css/style.css" rel="stylesheet">
       <style type="text/css">
+         div#slider{
+            margin-bottom: 15px!important;
+         }
+         div#slider span{
+            font-size: 20px!important;
+            color:#FFF;
+         }
          @media(max-width:640px){
             a.btn.btn-secondary.text-light.rounded-pill.py-2.px-4.ms-4{
                margin-left:0!important;
@@ -109,26 +116,6 @@
          }
       </style>
       <link href="css/color-scheme.css" rel="stylesheet">
-      <style type="text/css">
-         /* (A) FORCE ALL SLIDES INTO SINGLE ROW */
-         .hmove { display: flex; }
-         .hslide { width: 100%; flex-shrink: 0; font-size: 20px!important;}
-         .hwrap { overflow: hidden; }
-
-         /* (B) SHIFT SLIDES WITH CSS ANIMATION */
-         /* (B1) SLIDES POSITION */
-         .hmove { position: relative; top: 0; right: 0; }
-         @keyframes slideh {
-           0% { right: 0; } 32% { right: 0; }
-           33% { right: 100%; } 65% { right: 100%; }
-           66% { right: 200%; } 99% { right: 200%; }
-           100% { right: 0; }
-         }
-
-         /* (B2) MOVE SLIDES */
-         .hmove { animation: slideh 12s infinite; }
-         /*.hmove:hover { animation-play-state: paused; }*/
-   </style>
    </head>
    <body>
       <div class="bg-white p-0">
@@ -169,14 +156,37 @@
                      <div class="col-lg-6 text-center text-lg-start order-sm-first order-last">
                         <h1 class="text-white mb-4">Welcome to Goodnight Insomnia</h1>
                         <!-- <p class="typewriter text-white"></p> -->
-                        <div class="hwrap">
-                           <div class="hmove">
-                             <div class="hslide text-white">Are sleepless nights becoming a regular part of your life? You are not alone, and with Goodnight Insomnia, relief is within reach.<br><br></div>
-                             <div class="hslide text-white">Struggling to sleep? Goodnight Insomnia has the solution.</div>
-                             <div class="hslide text-white">Insomnia, meet your match.</div>
-                           </div>
-                        </div>
-                        <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min" class="btn btn-light py-sm-3 mb-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Connect With Me</a>
+
+                  <div id="slider"></div>
+                  <script>
+                    const sentences = [
+                      "Are sleepless nights becoming a regular part of your life? You are not alone, and with Goodnight Insomnia, relief is within reach.",
+                      "Struggling to sleep? Goodnight Insomnia has the solution.",
+                      "Insomnia, meet your match."
+                    ];
+                    const slider = document.getElementById('slider');
+                    let index = 0;
+                    function changeSentence() {
+                      const sentence = sentences[index];
+                      slider.innerHTML = ''; // Clear previous content
+                      for (let i = 0; i < sentence.length; i++) {
+                        const letter = sentence[i];
+                        const span = document.createElement('span');
+                        span.textContent = letter;
+                        span.style.opacity = 0;
+                        span.style.transition = "opacity 0.5s ease-in-out";
+                        const delay = i * 50; // Adjust the delay as needed
+                        setTimeout(() => {
+                          span.style.opacity = 1;
+                        }, delay);
+                        slider.appendChild(span);
+                      }
+                      index = (index + 1) % sentences.length;
+                      setTimeout(changeSentence, sentence.length * 50 + 2000); // Change after sentence is displayed
+                    }
+                    changeSentence();
+                  </script>
+                  <a href="https://calendly.com/goodnightinsomnia-sleepcoaching/30min" class="btn btn-light py-sm-3 mb-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Connect With Me</a>
                      </div>
                      <div class="col-lg-6 text-center text-lg-start">
                         <img class="img-fluid" src="img/9926505_4321503.png" alt="" style="margin-top: -50px;">
